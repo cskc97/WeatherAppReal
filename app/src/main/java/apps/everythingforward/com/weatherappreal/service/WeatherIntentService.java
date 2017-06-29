@@ -29,7 +29,6 @@ public class WeatherIntentService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
 
-        String temp,description;
 
         double latValue, lonValue;
 
@@ -70,10 +69,13 @@ public class WeatherIntentService extends IntentService {
                 for(int counter=0;counter<listArray.length();counter++)
                 {
                     JSONObject main = listArray.getJSONObject(counter).getJSONObject(Utility.LIST_MAIN);
-                     temp = main.getString(Utility.MAIN_TEMP);
+                    String temp = main.getString(Utility.MAIN_TEMP);
                     JSONArray array = main.getJSONArray(Utility.LIST_MAIN);
                     JSONObject weatherobj = array.getJSONObject(0);
-                    description = weatherobj.getString(Utility.WEATHER_MAIN);
+                    String description = weatherobj.getString(Utility.WEATHER_MAIN);
+
+
+
                 }
 
 
