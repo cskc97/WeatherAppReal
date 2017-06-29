@@ -15,6 +15,8 @@ public class Utility {
      private static String OPENWEATHER_API_URL="api.openweathermap.org/data/2.5/weather?";
 
 
+
+
         public static String getOpenWeatherApiURL(String lat,String lon)
         {
             String retURL = OPENWEATHER_API_URL+"lat="+lat+"&lon="+lon;
@@ -42,6 +44,13 @@ public class Utility {
 
 
         }
+
+
+    public static String KEY_LIST="list";
+    public static String LIST_MAIN="main";
+    public static String MAIN_TEMP="temp";
+    public static String LIST_WEATHER="weather";
+    public static String WEATHER_MAIN="main";
 
 
 }
