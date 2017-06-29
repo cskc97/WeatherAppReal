@@ -19,7 +19,7 @@ public class Utility {
 
         public static String getOpenWeatherApiURL(String lat,String lon)
         {
-            String retURL = OPENWEATHER_API_URL+"lat="+lat+"&lon="+lon;
+            String retURL = OPENWEATHER_API_URL+"lat="+lat+"&lon="+lon+"&APPID=de62e77b5bbbbde3565c30070d96fbf0";
 
             return retURL;
         }

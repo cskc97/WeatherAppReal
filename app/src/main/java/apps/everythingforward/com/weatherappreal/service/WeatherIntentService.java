@@ -63,13 +63,15 @@ public class WeatherIntentService extends IntentService {
 
             String openWeatherURL = Utility.getOpenWeatherApiURL(strLatitude,strLongitude);
 
+            Log.e("WIS",openWeatherURL);
 
 
-            try {
 
                 String body = HttpRequest.get(openWeatherURL).body();
+
+                Log.e("WIS",body);
                 JSONObject mainObj = new JSONObject(body);
-                JSONArray listArray = mainObject.getJSONArray(Utility.KEY_LIST);
+                JSONArray listArray = mainObj.getJSONArray(Utility.KEY_LIST);
 
                 for(int counter=0;counter<listArray.length();counter++)
                 {
@@ -86,6 +88,11 @@ public class WeatherIntentService extends IntentService {
                 }
 
 
+                if(data.size()==0)
+                {
+                    Log.e("WIS","Data is empty");
+                }
+
                 EventBus.getDefault().post(new WeatherEvent(data));
 
 
@@ -94,11 +101,7 @@ public class WeatherIntentService extends IntentService {
 
 
 
-            }
-            catch(Exception e)
-            {
 
-            }
 
 
 
