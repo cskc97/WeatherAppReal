@@ -4,12 +4,16 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.net.URL;
+import java.util.ArrayList;
 
 import apps.everythingforward.com.weatherappreal.Utility;
+import apps.everythingforward.com.weatherappreal.events.WeatherEvent;
+import apps.everythingforward.com.weatherappreal.model.WeatherData;
 import apps.everythingforward.com.weatherappreal.network.HttpRequest;
 
 /**
@@ -29,6 +33,7 @@ public class WeatherIntentService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
 
+        ArrayList<WeatherData> data = new ArrayList<>();
 
         double latValue, lonValue;
 
@@ -74,9 +79,14 @@ public class WeatherIntentService extends IntentService {
                     JSONObject weatherobj = array.getJSONObject(0);
                     String description = weatherobj.getString(Utility.WEATHER_MAIN);
 
+                    data.add(new WeatherData(temp,description));
+
 
 
                 }
+
+
+                EventBus.getDefault().post(new WeatherEvent(data));
 
 
 
